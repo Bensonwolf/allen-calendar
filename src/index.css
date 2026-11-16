@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 246 247 249;
+  --surface: 255 255 255;
+  --surface-2: 241 243 246;
+  --border: 228 231 236;
+  --text: 24 29 39;
+  --muted: 102 110 125;
+  --faint: 156 163 175;
+  --primary: 59 130 246;
+  --primary-soft: 235 243 255;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: 14 17 23;
+  --surface: 23 27 35;
+  --surface-2: 33 38 49;
+  --border: 45 51 64;
+  --text: 232 235 240;
+  --muted: 152 160 174;
+  --faint: 104 112 127;
+  --primary: 79 142 247;
+  --primary-soft: 28 42 68;
+  color-scheme: dark;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-app font-sans text-ink antialiased;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+  ::selection {
+    background: rgb(var(--primary) / 0.22);
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line bg-surface shadow-card;
+  }
+  .btn {
+    @apply inline-flex shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary/90;
+  }
+  .btn-outline {
+    @apply border border-line bg-surface text-ink hover:bg-surface2;
+  }
+  .btn-ghost {
+    @apply text-muted hover:bg-surface2 hover:text-ink;
+  }
+  .btn-danger {
+    @apply bg-red-500 text-white hover:bg-red-600;
+  }
+  .icon-btn {
+    @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted transition-colors hover:bg-surface2 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40;
+  }
+  .input {
+    @apply w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink transition-colors placeholder:text-faint focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:opacity-50;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-medium text-muted;
+  }
+  .segmented {
+    @apply inline-flex rounded-lg bg-surface2 p-0.5;
+  }
+  .segmented > button {
+    @apply rounded-md px-3 py-1.5 text-sm font-medium text-muted transition-colors;
+  }
+  .segmented > button[aria-pressed='true'] {
+    @apply bg-surface text-ink shadow-card;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
